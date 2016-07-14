@@ -1,4 +1,4 @@
-FROM liferay/jre:8-openjdk
+FROM liferay/jdk:8-openjdk
 MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
 
 RUN apk add --update curl && \
