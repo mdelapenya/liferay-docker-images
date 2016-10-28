@@ -4,7 +4,8 @@ MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
 RUN apt-get update \
   && apt-get install curl \
   && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+  && groupadd -r liferay && useradd -r -g liferay liferay
 
 ENV LIFERAY_HOME=/usr/local/liferay-ce-portal-7.0-ga2
 
@@ -22,6 +23,10 @@ RUN set -x \
 			&& curl -fSL "$LIFERAY_TOMCAT_URL" -o liferay-portal-tomcat-7.0-ce-ga2-20160610113014153.zip \
 			&& unzip liferay-portal-tomcat-7.0-ce-ga2-20160610113014153.zip \
 			&& rm liferay-portal-tomcat-7.0-ce-ga2-20160610113014153.zip
+
+RUN chown -R liferay:liferay $LIFERAY_HOME
+
+USER liferay
 
 EXPOSE 8080/tcp
 EXPOSE 11311/tcp
