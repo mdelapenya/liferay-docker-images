@@ -1,6 +1,8 @@
-FROM alpine:3.4
+FROM openjdk:8-jre
 MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
 
-RUN apk --update add openjdk8-jre
+RUN apt-get update \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 CMD ["/usr/bin/java", "-version"]
