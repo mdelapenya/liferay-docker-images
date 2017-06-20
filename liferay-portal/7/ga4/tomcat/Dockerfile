@@ -2,7 +2,7 @@ FROM liferay/jdk:8-openjdk
 MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
 
 RUN apt-get update \
-  && apt-get install -y curl \
+  && apt-get install -y curl telnet \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && groupadd -r liferay && useradd -r -g liferay liferay
